@@ -59,3 +59,15 @@ def extract_locations(tag_lst):
     firm_lst = [firm.text for firm in tag_lst]
     print(f"The number of locations extracted is {len(firm_lst)}")
     return pd.Series(firm_lst)
+
+def extract_urls(tag_lst):
+    # Obtenemos la dirección del sitio web desde el atributo href
+    url_lst = [link['href'] for link in tag_lst]
+    print(f"Total de URLs extraídas: {len(url_lst)}")
+    return pd.Series(url_lst)
+
+def extract_emails(tag_lst):
+    # Obtenemos el mail y limpiamos el prefijo mailto:
+    email_lst = [mail['href'].replace('mailto:', '') for mail in tag_lst]
+    print(f"Total de correos extraídos: {len(email_lst)}")
+    return pd.Series(email_lst)
